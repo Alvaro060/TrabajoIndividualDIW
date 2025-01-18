@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <!-- Estilos propios -->
+    <link href="css/estilos.css" rel="stylesheet" />
+
+    <title>Proyecto Individual DIW</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- Barra de navegación -->
+      <nav
+        class="navbar navbar-expand-lg bg-gradient  bg-gradient-directional"
+      >
+        <div class="container-fluid">
+          <a class="navbar-brand">Reservas Del Hotel</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="mnuAltaCliente"
+                  >Alta de clientes</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="mnuEditarCliente"
+                  >Editar clientes</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="mnuBorrarCliente"
+                  >Borrar clientes</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="mnuListadoCliente"
+                  >Listado de clientes</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="mnuAltaReserva"
+                  >Alta de reservas</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="mnuEditarReserva"
+                  >Editar reservas</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="mnuBorrarReserva"
+                  >Borrar reservas</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" id="mnuListadoReserva"
+                  >Listado de reservas</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Sección de Formularios -->
+      <div id="formularios">
+        <!-- Formulario de Alta de Clientes -->
+        <div id="divfrmAltaCliente">
+          <form
+            name="frmAltaCliente"
+            id="frmAltaCliente"
+            role="form"
+            class="d-none"
+          >
+            <div class="row mb-3">
+              <h2>Alta de clientes</h2>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="client_name"
+                >Nombre Del Cliente</label
+              >
+              <div class="col-3">
+                <input
+                  id="client_name"
+                  name="client_name"
+                  placeholder="Nombre Del Cliente"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="address"
+                >Dirección Del Cliente</label
+              >
+              <div class="col-3">
+                <input
+                  id="address"
+                  name="address"
+                  placeholder="Dirección Del Cliente"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="phone_number"
+                >Teléfono Del Cliente</label
+              >
+              <div class="col-3">
+                <input
+                  id="phone_number"
+                  name="phone_number"
+                  placeholder="Teléfono Del Cliente"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="email"
+                >Email Del Cliente</label
+              >
+              <div class="col-3">
+                <input
+                  id="email"
+                  name="email"
+                  placeholder="Email Del Cliente"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-2"></div>
+              <div class="col-3">
+                <input
+                  type="button"
+                  class="btn btn-primary"
+                  name="btnAltaCliente"
+                  id="btnAltaCliente"
+                  value="Aceptar"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Formulario de Listado de Clientes -->
+
+        <div id="divfrmListadoCliente">
+          <form
+            name="frmListadoCliente"
+            id="frmListadoCliente"
+            role="form"
+            class="d-none"
+          >
+            <fieldset>
+              <legend>Listado de clientes</legend>
+
+              <div class="row mb-3">
+                <label class="col-2 control-label" for="txtListadoIdCLiente"
+                  >Id Del Cliente</label
+                >
+                <div class="col-3">
+                  <input
+                    id="txtListadoIdCLiente"
+                    name="txtListadoIdCLiente"
+                    placeholder="Id Del Cliente"
+                    class="form-control input-md"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+              <input
+                type="button"
+                class="btn btn-primary"
+                name="btnListadoCliente"
+                id="btnListadoCliente"
+                value="Aceptar"
+              />
+            </fieldset>
+          </form>
+        </div>
+
+        <!-- Formulario para editar Clientes -->
+
+        <div id="divfrmEditarCliente">
+          <form
+            name="frmEditarCliente"
+            id="frmEditarCliente"
+            role="form"
+            class="d-none"
+          >
+            <div class="row mb-3">
+              <h2>Editar Cliente</h2>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="txtEditarIdCliente"
+                >Id Del Cliente Que Quieres Editar (ID NO EDITABLE)</label
+              >
+              <div class="col-3">
+                <input
+                  id="txtEditarIdCliente"
+                  name="txtEditarIdCliente"
+                  class="form-control input-md"
+                  type="text"
+                  style="background-color: #85afda"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="txtEditarNombreCliente"
+                >Nombre Del Cliente</label
+              >
+              <div class="col-3">
+                <input
+                  id="txtEditarNombreCliente"
+                  name="txtEditarNombreCliente"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="txtEditarDireccionCliente"
+                >Dirección Del Cliente</label
+              >
+              <div class="col-3">
+                <input
+                  id="txtEditarDireccionCliente"
+                  name="txtEditarDireccionCliente"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="txtEditarTelefonoCliente"
+                >Teléfono Del Cliente</label
+              >
+              <div class="col-3">
+                <input
+                  id="txtEditarTelefonoCliente"
+                  name="txtEditarTelefonoCliente"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="txtEditarEmailCliente"
+                >Email Del Cliente</label
+              >
+              <div class="col-3">
+                <input
+                  id="txtEditarEmailCliente"
+                  name="txtEditarEmailCliente"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="btnEditarCliente"></label>
+              <div class="col-3">
+                <input
+                  type="button"
+                  id="btnEditarCliente"
+                  name="btnEditarCliente"
+                  class="btn btn-primary"
+                  value="Aceptar"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Formulario para borrar Clientes -->
+
+        <div id="divfrmBorrarCliente">
+          <form
+            name="frmBorrarCliente"
+            id="frmBorrarCliente"
+            role="form"
+            class="d-none"
+          >
+            <fieldset>
+              <legend>Borrar Cliente</legend>
+
+              <div class="row mb-3">
+                <label class="col-2 control-label" for="txtBorrarIdCliente"
+                  >Id Del Cliente Que Quieres Borrar</label
+                >
+                <div class="col-3">
+                  <input
+                    id="txtBorrarIdCliente"
+                    name="txtBorrarIdCliente"
+                    class="form-control input-md"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label
+                  class="col-2 control-label"
+                  for="btnBorrarCliente"
+                ></label>
+                <div class="col-3">
+                  <input
+                    type="button"
+                    id="btnBorrarCliente"
+                    name="btnBorrarCliente"
+                    class="btn btn-primary"
+                    value="Borrar"
+                  />
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+        
+        <!-- Formulario de Alta de Reservas -->
+
+        <div id="divfrmAltaReserva">
+            <form
+              name="frmAltaReserva"
+              id="frmAltaReserva"
+              role="form"
+              class="d-none"
+            >
+              <div class="row mb-3">
+                <h2>Alta de reservas</h2>
+              </div>
+  
+              <div class="row mb-3">
+                <label class="col-2 control-label" for="lstClientId"
+                  >Nombre Del Cliente</label
+                >
+                <div class="col-3">
+                    <select class="form-select" name="lstClientId" id="lstClientId">
+                        <option value="">Seleccione un nombre</option>
+                    </select>
+                </div>
+              </div>
+  
+              <div class="row mb-3">
+                <label class="col-2 control-label" for="check_in_date"
+                  >Fecha De Entrada</label
+                >
+                <div class="col-3">
+                    <input id="check_in_date" name="check_in_date"
+                    class="form-control input-md" type="date">
+                </div>
+              </div>
+  
+              <div class="row mb-3">
+                <label class="col-2 control-label" for="check_out_date"
+                  >Fecha De Salida</label
+                >
+                <div class="col-3">
+                    <input id="check_out_date" name="check_out_date"
+                    class="form-control input-md" type="date">
+                </div>
+              </div>
+  
+              <div class="row mb-3">
+                <label class="col-2 control-label" for="room_number"
+                  >Número De Habitación</label
+                >
+                <div class="col-3">
+                  <input
+                    id="room_number"
+                    name="room_number"
+                    placeholder="Número De Habitación"
+                    class="form-control input-md"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label class="col-2 control-label" for="price"
+                  >Precio De La Habitación</label
+                >
+                <div class="col-3">
+                  <input
+                    id="price"
+                    name="price"
+                    placeholder="Precio De La Habitación"
+                    class="form-control input-md"
+                    type="text"
+                  />
+                </div>
+              </div>
+  
+              <div class="row mb-3">
+                <div class="col-2"></div>
+                <div class="col-3">
+                  <input
+                    type="button"
+                    class="btn btn-primary"
+                    name="btnAltaReserva"
+                    id="btnAltaReserva"
+                    value="Aceptar"
+                  />
+                </div>
+              </div>
+            </form>
+          </div>
+
+        <!-- Formulario de Listado de Reservas -->
+
+        <div id="divfrmListadoReserva">
+          <form
+            name="frmListadoReserva"
+            id="frmListadoReserva"
+            role="form"
+            class="d-none"
+          >
+            <fieldset>
+              <legend>Listado de reservas</legend>
+
+              <div class="row mb-3">
+                <label class="col-2 control-label" for="txtListadoIdReserva"
+                  >Id De La Reserva</label
+                >
+                <div class="col-3">
+                  <input
+                    id="txtListadoIdReserva"
+                    name="txtListadoIdReserva"
+                    placeholder="Id De La Reserva"
+                    class="form-control input-md"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+              <input
+                type="button"
+                class="btn btn-primary"
+                name="btnListadoReserva"
+                id="btnListadoReserva"
+                value="Aceptar"
+              />
+            </fieldset>
+          </form>
+        </div>
+
+        <!-- Formulario para editar Reservas -->
+
+        <div id="divfrmEditarReserva">
+          <form
+            name="frmEditarReserva"
+            id="frmEditarReserva"
+            role="form"
+            class="d-none"
+          >
+            <div class="row mb-3">
+              <h2>Editar Reserva</h2>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="txtEditarIdReserva"
+                >Id De La Reserva Que Quieres Editar (ID NO EDITABLE)</label
+              >
+              <div class="col-3">
+                <input
+                  id="txtEditarIdReserva"
+                  name="txtEditarIdReserva"
+                  class="form-control input-md"
+                  type="text"
+                  style="background-color: #85afda"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="lstClienteId"
+                >Id Del Cliente</label
+              >
+              <div class="col-3">
+                <input
+                  id="lstClienteId"
+                  name="lstClienteId"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="dateEditar_check_in_date"
+                >Fecha De Entrada</label
+              >
+              <div class="col-3">
+                  <input id="dateEditar_check_in_date" name="dateEditar_check_in_date"
+                  class="form-control input-md" type="date">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="dateEditar_check_out_date"
+                >Fecha De Salida</label
+              >
+              <div class="col-3">
+                  <input id="dateEditar_check_out_date" name="dateEditar_check_out_date"
+                  class="form-control input-md" type="date">
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="txtEditarRoomNumber"
+                >Número De La Habitación</label
+              >
+              <div class="col-3">
+                <input
+                  id="txtEditarRoomNumber"
+                  name="txtEditarRoomNumber"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="txtEditarPrice"
+                >Precio De La Habitación</label
+              >
+              <div class="col-3">
+                <input
+                  id="txtEditarPrice"
+                  name="txtEditarPrice"
+                  class="form-control input-md"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="col-2 control-label" for="btnEditarReserva"></label>
+              <div class="col-3">
+                <input
+                  type="button"
+                  id="btnEditarReserva"
+                  name="btnEditarReserva"
+                  class="btn btn-primary"
+                  value="Aceptar"
+                />
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Formulario para borrar Reservas -->
+
+        <div id="divfrmBorrarReservas">
+          <form
+            name="frmBorrarReserva"
+            id="frmBorrarReserva"
+            role="form"
+            class="d-none"
+          >
+            <fieldset>
+              <legend>Borrar Reserva</legend>
+
+              <div class="row mb-3">
+                <label class="col-2 control-label" for="txtBorrarIdReserva"
+                  >Id De La Reserva Que Quieres Borrar</label
+                >
+                <div class="col-3">
+                  <input
+                    id="txtBorrarIdReserva"
+                    name="txtBorrarIdReserva"
+                    class="form-control input-md"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <label
+                  class="col-2 control-label"
+                  for="btnBorrarReserva"
+                ></label>
+                <div class="col-3">
+                  <input
+                    type="button"
+                    id="btnBorrarReserva"
+                    name="btnBorrarReserva"
+                    class="btn btn-primary"
+                    value="Borrar"
+                  />
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+
+      <!-- Sección de Listado de Clientes -->
+
+      <div class="container-fluid">
+        <div id="listado"></div>
+      </div>
+
+      <!-- Sección de Listado de Reservas -->
+
+      <div class="container-fluid">
+        <div id="listadoReservas"></div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <!-- Scripts propios -->
+    <script src="js/ajax.js"></script>
+    <script src="js/objetos.js"></script>
+    <script src="js/codigo.js"></script>
+  </body>
+</html>
