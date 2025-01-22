@@ -202,41 +202,41 @@ class ReservasHotel {
   async editarCliente(oCliente) {
     let datos = new FormData();
 
-    datos.append("cliente",JSON.stringify(oCliente));
-   
+    datos.append("cliente", JSON.stringify(oCliente));
+
     let respuesta = await peticionPOST("editarCliente.php", datos);
 
     return respuesta;
   }
 
   async borrarCliente(idCliente) {
-  let datos = new FormData();
+    let datos = new FormData();
 
-  datos.append("client_id", idCliente);
+    datos.append("client_id", idCliente);
 
-  let respuesta = await peticionPOST("borrarCliente.php", datos);
+    let respuesta = await peticionPOST("borrarCliente.php", datos);
 
-  return respuesta;
+    return respuesta;
   }
 
   async altaReserva(oReserva) {
-  let datos = new FormData();
+    let datos = new FormData();
 
-  datos.append("reserva", JSON.stringify(oReserva));
+    datos.append("reserva", JSON.stringify(oReserva));
 
-  console.log("Datos:", datos);
+    console.log("Datos:", datos);
 
-  let respuesta = await peticionPOST("altaReserva.php", datos);
+    let respuesta = await peticionPOST("altaReserva.php", datos);
 
-  return respuesta;
+    return respuesta;
   }
 
   async getClientes() {
-  let datos = new FormData();
+    let datos = new FormData();
 
-  let respuesta = await peticionGET("getClientes.php", datos);
+    let respuesta = await peticionGET("getClientes.php", datos);
 
-  return respuesta;
+    return respuesta;
   }
 
   async listadoReserva(idReserva) {
@@ -271,8 +271,8 @@ class ReservasHotel {
   async editarReserva(oReserva) {
     let datos = new FormData();
 
-    datos.append("reserva",JSON.stringify(oReserva));
-   
+    datos.append("reserva", JSON.stringify(oReserva));
+
     let respuesta = await peticionPOST("editarReserva.php", datos);
 
     return respuesta;
@@ -280,12 +280,73 @@ class ReservasHotel {
 
   async borrarReserva(idReserva) {
     let datos = new FormData();
-  
+
     datos.append("reservation_id", idReserva);
-  
+
     let respuesta = await peticionPOST("borrarReserva.php", datos);
-  
+
     return respuesta;
+  }
+
+  async listadoReservaTotal() {
+    let listado = "";
+
+    let respuesta = await peticionGET("getReservas.php", new FormData());
+
+    if (respuesta.error) {
+      listado = respuesta.mensaje;
+    } else {
+      listado = "<table class='table table-striped'>";
+      listado +=
+        "<thead><tr><th>ID RESERVA</th><th>CLIENTE ID</th><th>FECHA ENTRADA</th><th>FECHA SALIDA</th><th>NUMERO DE HABITACION</th><th>PRECIO</th></tr></thead>";
+      listado += "<tbody>";
+
+      for (let reserva of respuesta.datos) {
+        listado += "<tr><td>" + reserva.reservation_id + "</td>";
+        listado += "<td>" + reserva.client_id + "</td>";
+        listado += "<td>" + reserva.check_in_date + "</td>";
+        listado += "<td>" + reserva.check_out_date + "</td>";
+        listado += "<td>" + reserva.room_number + "</td>";
+        listado += "<td>" + reserva.price + "</td></tr>";
+      }
+      listado += "</tbody></table>";
     }
+
+    return listado;
+  }
+
+  async getReservas() {
+    let datos = new FormData();
+
+    let respuesta = await peticionGET("getReservas.php", datos);
+
+    return respuesta;
+  }
+
+  async listadoClienteTotal() {
+    let listado = "";
+
+    let respuesta = await peticionGET("getClientes.php", new FormData());
+
+    if (respuesta.error) {
+      listado = respuesta.mensaje;
+    } else {
+      listado = "<table class='table table-striped'>";
+      listado +=
+        "<thead><tr><th>ID CLIENTE</th><th>CLIENTE NOMBRE</th><th>DIRECCION</th><th>NUMERO DE TELEFONO</th><th>EMAIL</th></tr></thead>";
+      listado += "<tbody>";
+
+      for (let cliente of respuesta.datos) {
+        listado += "<tr><td>" + cliente.client_id + "</td>";
+        listado += "<td>" + cliente.client_name + "</td>";
+        listado += "<td>" + cliente.address + "</td>";
+        listado += "<td>" + cliente.phone_number + "</td>";
+        listado += "<td>" + cliente.email + "</td></tr>";
+      }
+      listado += "</tbody></table>";
+    }
+
+    return listado;
+  }
 
 }

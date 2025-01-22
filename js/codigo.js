@@ -39,13 +39,17 @@ function inicio() {
     .querySelector("#mnuBorrarReserva")
     .addEventListener("click", mostrarFormulario);
 
-
   frmAltaCliente.btnAltaCliente.addEventListener("click", altaCliente);
   frmListadoCliente.btnListadoCliente.addEventListener("click", listadoCliente);
+  frmListadoCliente.btnListadoClienteTotal.addEventListener("click", listadoClienteTotal);
   frmEditarCliente.btnEditarCliente.addEventListener("click", editarCliente);
   frmBorrarCliente.btnBorrarCliente.addEventListener("click", borrarCliente);
   frmAltaReserva.btnAltaReserva.addEventListener("click", altaReserva);
   frmListadoReserva.btnListadoReserva.addEventListener("click", listadoReserva);
+  frmListadoReserva.btnListadoReservaTotal.addEventListener(
+    "click",
+    listadoReservaTotal
+  );
   frmEditarReserva.btnEditarReserva.addEventListener("click", editarReserva);
   frmBorrarReserva.btnBorrarReserva.addEventListener("click", borrarReserva);
 }
@@ -68,7 +72,7 @@ function mostrarFormulario(oEvento) {
       break;
     case "mnuAltaReserva":
       frmAltaReserva.classList.remove("d-none");
-      cargarDesplegable()
+      cargarDesplegable();
       break;
     case "mnuListadoReserva":
       frmListadoReserva.classList.remove("d-none");
@@ -123,7 +127,7 @@ async function listadoCliente() {
 }
 
 async function editarCliente() {
-  let idCliente= frmEditarCliente.txtEditarIdCliente.value.trim();
+  let idCliente = frmEditarCliente.txtEditarIdCliente.value.trim();
   let nombre = frmEditarCliente.txtEditarNombreCliente.value.trim();
   let direccion = frmEditarCliente.txtEditarDireccionCliente.value.trim();
   let telefono = frmEditarCliente.txtEditarTelefonoCliente.value.trim();
@@ -142,8 +146,7 @@ async function editarCliente() {
 }
 
 async function borrarCliente() {
-
-  let idCliente= frmBorrarCliente.txtBorrarIdCliente.value.trim();
+  let idCliente = frmBorrarCliente.txtBorrarIdCliente.value.trim();
 
   let respuesta = await oReservasHotel.borrarCliente(idCliente);
 
@@ -162,7 +165,14 @@ async function altaReserva() {
   let room_number = frmAltaReserva.room_number.value.trim();
   let price = frmAltaReserva.price.value.trim();
 
-  let reserva = new Reserva(null, client_id, check_in_date, check_out_date, room_number, price);
+  let reserva = new Reserva(
+    null,
+    client_id,
+    check_in_date,
+    check_out_date,
+    room_number,
+    price
+  );
 
   let respuesta = await oReservasHotel.altaReserva(reserva);
 
@@ -174,18 +184,18 @@ async function altaReserva() {
   }
 }
 
-async function cargarDesplegable(){
+async function cargarDesplegable() {
   const respuesta = await oReservasHotel.getClientes();
 
-  if(respuesta.ok){
-      let optionsNombres = "";
-      for(let nombre of respuesta.datos){
-        optionsNombres += `<option value="${nombre.client_id}">${nombre.client_name}</option>`;
-      }
+  if (respuesta.ok) {
+    let optionsNombres = "";
+    for (let nombre of respuesta.datos) {
+      optionsNombres += `<option value="${nombre.client_id}">${nombre.client_name}</option>`;
+    }
 
-      frmAltaReserva.lstClientId.innerHTML  = optionsNombres;
-  } else{
-      alert("Error al recuperar los nombres de clientes");
+    frmAltaReserva.lstClientId.innerHTML = optionsNombres;
+  } else {
+    alert("Error al recuperar los nombres de clientes");
   }
 }
 
@@ -201,15 +211,21 @@ async function listadoReserva() {
 }
 
 async function editarReserva() {
-  let idReserva= frmEditarReserva.txtEditarIdReserva.value.trim();
+  let idReserva = frmEditarReserva.txtEditarIdReserva.value.trim();
   let idCliente = frmEditarReserva.lstClienteId.value.trim();
   let check_in_date = frmEditarReserva.dateEditar_check_in_date.value.trim();
   let check_out_date = frmEditarReserva.dateEditar_check_out_date.value.trim();
   let room_number = frmEditarReserva.txtEditarRoomNumber.value.trim();
   let price = frmEditarReserva.txtEditarPrice.value.trim();
 
-
-  let reserva = new Reserva(idReserva, idCliente, check_in_date, check_out_date, room_number, price);
+  let reserva = new Reserva(
+    idReserva,
+    idCliente,
+    check_in_date,
+    check_out_date,
+    room_number,
+    price
+  );
 
   let respuesta = await oReservasHotel.editarReserva(reserva);
 
@@ -222,8 +238,7 @@ async function editarReserva() {
 }
 
 async function borrarReserva() {
-
-  let idReserva= frmBorrarReserva.txtBorrarIdReserva.value.trim();
+  let idReserva = frmBorrarReserva.txtBorrarIdReserva.value.trim();
 
   let respuesta = await oReservasHotel.borrarReserva(idReserva);
 
@@ -233,4 +248,22 @@ async function borrarReserva() {
     frmBorrarReserva.reset();
     ocultarFormularios();
   }
+}
+
+function listadoReservaTotal() {
+  const ventana = open("listado_reservas.html");
+
+  ventana.addEventListener("load", async () => {
+    const listado = await oReservasHotel.listadoReservaTotal();
+    ventana.document.querySelector("#listadoReservas").innerHTML = listado;
+  });
+}
+
+function listadoClienteTotal() {
+  const ventana = open("listado_clientes.html");
+
+  ventana.addEventListener("load", async () => {
+    const listado = await oReservasHotel.listadoClienteTotal();
+    ventana.document.querySelector("#listado").innerHTML = listado;
+  });
 }

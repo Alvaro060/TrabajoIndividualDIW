@@ -15,6 +15,16 @@
         <div id="listado"></div>
     </div>
     
+    <script>
+        // window.addEventListener("load", cargarListado);
+        cargarListado();
+        
+        async function cargarListado() {
+            document.querySelector("#listadoReservas").innerHTML = await opener.oReservasHotel.listadoReservaTotal();
+        }
+
+    </script>
+
 </body>
 
 </html>
